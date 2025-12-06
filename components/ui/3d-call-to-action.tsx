@@ -81,11 +81,11 @@ export function SplineCallToAction() {
         <div className="relative w-full overflow-hidden bg-[#030303] border-t border-white/10">
 
             <div className="relative min-h-[600px] flex flex-col justify-center items-center">
-                <div className="absolute inset-0 z-0 pointer-events-none opacity-70">
+                <div className="absolute inset-0 z-0 pointer-events-auto opacity-70">
                     <HeroSplineBackground />
                 </div>
 
-                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
                     <HeroContent />
                 </div>
             </div>
