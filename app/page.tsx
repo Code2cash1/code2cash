@@ -14,6 +14,10 @@ import DisplayCardsSection from "@/components/ui/orbital-timeline-section";
 import TechStackMarqueeNew from "@/components/ui/tech-stack-marquee-new";
 import { ShuffleCards } from "@/components/ui/testimonial-demo-final";
 import { SplineCallToAction } from "@/components/ui/3d-call-to-action";
+import { TestimonialsSectionDemo } from "@/components/ui/testimonials-section-demo";
+import { LampSection } from "@/components/ui/lamp-section-demo";
+import { ContactSectionDemo } from "@/components/ui/contact-section-demo";
+import { Footer } from "@/components/ui/footer-section";
 
 export default function Home() {
   return (
@@ -79,7 +83,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack Marquee Section */}
-        <section id="contact" className="bg-[#030303] overflow-x-hidden w-full">
+        <section id="tech-stack" className="bg-[#030303] overflow-x-hidden w-full">
           <TechStackMarqueeNew />
         </section>
 
@@ -87,7 +91,25 @@ export default function Home() {
         <section className="bg-[#030303] overflow-x-hidden w-full border-t border-white/5">
           <SplineCallToAction />
         </section>
+
+        {/* Testimonials Marquee Section */}
+        <section className="bg-[#030303] overflow-x-hidden w-full border-t border-white/5">
+          <TestimonialsSectionDemo />
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="bg-[#030303] overflow-x-hidden w-full border-t border-white/5">
+          <ContactSectionDemo />
+        </section>
+
+        {/* Lamp Section */}
+        <section className="bg-[#030303] overflow-x-hidden w-full">
+          <LampSection />
+        </section>
       </main>
+
+      {/* Footer Section */}
+      <Footer />
 
       {/* Mobile Navigation Menu */}
       <MobileNavMenu />

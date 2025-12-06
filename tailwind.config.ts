@@ -58,10 +58,13 @@ const config: Config = {
                 pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                 ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
             },
+            backgroundImage: {
+                "gradient-conic": "conic-gradient(var(--conic-position), var(--tw-gradient-stops))",
+            },
             keyframes: {
                 marquee: {
                     from: { transform: 'translateX(0)' },
-                    to: { transform: 'translateX(calc(-100% - var(--gap)))' }
+                    to: { transform: 'translateX(-100%)' }
                 },
                 'marquee-vertical': {
                     from: { transform: 'translateY(0)' },

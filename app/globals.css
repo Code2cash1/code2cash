@@ -32,6 +32,11 @@
     --gradient-color: #31a39c;
     --sparkles-color: #ffffff;
   }
+
+  ::selection {
+    background-color: #31a39c;
+    color: #ffffff;
+  }
 }
 
 @layer base {
@@ -133,6 +138,7 @@
     /* Smaller gaps and spacing */
     .gap-6 {
       gap: 1rem !important;
+      /* Removed !important to allow overriding if needed, but keeping for now as it was there */
     }
 
     .gap-8 {
@@ -241,7 +247,8 @@ button {
 
 /* Smooth scrolling */
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; - Handled by Lenis, disabled to prevent conflict/lag */
+  overscroll-behavior: none;
 }
 
 /* Custom scrollbar */
@@ -360,7 +367,7 @@ html {
   }
 
   to {
-    transform: translateX(calc(-100% - var(--gap)));
+    transform: translateX(-100%);
   }
 }
 
@@ -376,8 +383,12 @@ html {
 
 .animate-marquee {
   animation: marquee var(--duration) infinite linear;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-marquee-vertical {
   animation: marquee-vertical var(--duration) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }

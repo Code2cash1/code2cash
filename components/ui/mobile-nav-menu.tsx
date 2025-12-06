@@ -8,6 +8,8 @@ export function MobileNavMenu() {
         const element = document.getElementById(section)
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' })
+        } else {
+            window.location.href = `/#${section}`
         }
     }
 
@@ -30,7 +32,7 @@ export function MobileNavMenu() {
                     />
                     <MenuItem
                         icon={<Home size={24} strokeWidth={1.5} className="text-[#31a39c]" />}
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        onClick={() => window.location.href = '/'}
                     />
                     <MenuItem
                         icon={<Info size={24} strokeWidth={1.5} className="text-[#31a39c]" />}
@@ -42,7 +44,7 @@ export function MobileNavMenu() {
                     />
                     <MenuItem
                         icon={<Users size={24} strokeWidth={1.5} className="text-[#31a39c]" />}
-                        onClick={() => handleNavigation('careers')}
+                        onClick={() => window.location.href = '/careers'}
                     />
                     <MenuItem
                         icon={<Mail size={24} strokeWidth={1.5} className="text-[#31a39c]" />}

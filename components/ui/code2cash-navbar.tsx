@@ -5,11 +5,11 @@ import { NavBar } from "@/components/ui/tubelight-navbar"
 
 export function Code2CashNavbar() {
     const navItems = [
-        { name: 'Home', url: '#', icon: Home },
-        { name: 'About', url: '#about', icon: Info },
-        { name: 'Services', url: '#services', icon: Briefcase },
-        { name: 'Careers', url: '#careers', icon: Users },
-        { name: 'Contact', url: '#contact', icon: Mail }
+        { name: 'Home', url: '/', icon: Home },
+        { name: 'About', url: '/#about', icon: Info },
+        { name: 'Services', url: '/#services', icon: Briefcase },
+        { name: 'Careers', url: '/careers', icon: Users },
+        { name: 'Contact', url: '/#contact', icon: Mail }
     ]
 
     return <NavBar items={navItems} />
