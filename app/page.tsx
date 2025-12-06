@@ -1,39 +1,40 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Code2CashNavbar } from "@/components/ui/code2cash-navbar";
 import { MobileNavMenu } from "@/components/ui/mobile-nav-menu";
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
-import { SplineSceneBasic } from "@/components/ui/demo";
-import { FeatureDemo } from "@/components/ui/feature-demo";
-import { Feature108Demo } from "@/components/ui/feature108-demo";
-import { OurVision } from "@/components/ui/our-vision";
-import { CodeShowcaseDemo } from "@/components/ui/code-showcase-demo";
-import { DisplayCardsDemo } from "@/components/ui/display-cards-demo";
-import DisplayCardsSection from "@/components/ui/orbital-timeline-section";
-import TechStackMarqueeNew from "@/components/ui/tech-stack-marquee-new";
-import { ShuffleCards } from "@/components/ui/testimonial-demo-final";
-import { SplineCallToAction } from "@/components/ui/3d-call-to-action";
-import { TestimonialsSectionDemo } from "@/components/ui/testimonials-section-demo";
-import { LampSection } from "@/components/ui/lamp-section-demo";
-import { ContactSectionDemo } from "@/components/ui/contact-section-demo";
+
+// Heavy 3D/Canvas components loaded dynamically
+const SplineSceneBasic = dynamic(() => import("@/components/ui/demo").then(mod => mod.SplineSceneBasic), {
+  ssr: false,
+  loading: () => <div className="w-full h-[500px] bg-transparent" />
+});
+
+const FeatureDemo = dynamic(() => import("@/components/ui/feature-demo").then(mod => mod.FeatureDemo));
+const Feature108Demo = dynamic(() => import("@/components/ui/feature108-demo").then(mod => mod.Feature108Demo), { ssr: false });
+const OurVision = dynamic(() => import("@/components/ui/our-vision").then(mod => mod.OurVision));
+const CodeShowcaseDemo = dynamic(() => import("@/components/ui/code-showcase-demo").then(mod => mod.CodeShowcaseDemo));
+const DisplayCardsDemo = dynamic(() => import("@/components/ui/display-cards-demo").then(mod => mod.DisplayCardsDemo));
+const DisplayCardsSection = dynamic(() => import("@/components/ui/orbital-timeline-section"));
+const TechStackMarqueeNew = dynamic(() => import("@/components/ui/tech-stack-marquee-new"));
+const ShuffleCards = dynamic(() => import("@/components/ui/testimonial-demo-final").then(mod => mod.ShuffleCards));
+const SplineCallToAction = dynamic(() => import("@/components/ui/3d-call-to-action").then(mod => mod.SplineCallToAction), {
+  ssr: false,
+  loading: () => <div className="w-full h-[400px] bg-transparent" />
+});
+const TestimonialsSectionDemo = dynamic(() => import("@/components/ui/testimonials-section-demo").then(mod => mod.TestimonialsSectionDemo));
+const LampSection = dynamic(() => import("@/components/ui/lamp-section-demo").then(mod => mod.LampSection), {
+  ssr: false
+});
+const ContactSectionDemo = dynamic(() => import("@/components/ui/contact-section-demo").then(mod => mod.ContactSectionDemo));
 import { Footer } from "@/components/ui/footer-section";
 
 export default function Home() {
   return (
     <>
-      {/* Logo - Scrollable with page - ALIGNED WITH HEADER & LARGE (Negative top for tight fit) */}
-      <div className="absolute -top-6 left-2 md:-top-10 md:left-6 z-50">
-        <Link href="/" className="group flex items-start gap-3">
-          <div className="h-48 w-auto md:h-52 md:w-auto flex items-center justify-start transition-transform group-hover:scale-105">
-            <img
-              src="/logo-final.png"
-              alt="Code2Cash"
-              className="h-full w-auto object-contain filter invert hue-rotate-180 mix-blend-screen origin-top-left"
-            />
-          </div>
-        </Link>
-      </div>
+
 
       {/* Navbar */}
       <Code2CashNavbar />

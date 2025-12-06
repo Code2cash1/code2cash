@@ -17,7 +17,10 @@ interface NavBarProps {
     className?: string
 }
 
+import { usePathname } from "next/navigation"
+
 export function NavBar({ items, className }: NavBarProps) {
+    const pathname = usePathname()
     const [activeTab, setActiveTab] = useState(items[0].name)
     const [isMobile, setIsMobile] = useState(false)
     const [scrolled, setScrolled] = useState(false)
@@ -40,6 +43,37 @@ export function NavBar({ items, className }: NavBarProps) {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
+
+    useEffect(() => {
+        // Find exact match first (handles /, /#about as distinct if pathname matched, but pathname ignores hash)
+        // Since pathname ignores hash, / matches / and /#about's base. 
+        // We rely on path segments.
+
+        // Strategy:
+        // 1. If we are on a known page route (like /careers), set that.
+        // 2. If we are on root /, defaulting to Home is fine, but if user clicks About, local state handles it.
+        // This effect runs on pathname change.
+
+        const isHomePage = pathname === '/';
+
+        if (!isHomePage) {
+            // Check for exact match or prefix match for sub-pages
+            const matchingItem = items.find(item =>
+                item.url !== '/' && (item.url === pathname || pathname.startsWith(item.url))
+            );
+
+            if (matchingItem) {
+                setActiveTab(matchingItem.name);
+            }
+        } else {
+            // On home page, we generally want "Home" active unless we are handling scroll-spy which is complex here.
+            // We will stick to defaulting to Home if we just navigated here.
+            // But if we are just scrolling, this effect won't fire, so local state persists.
+            // If we navigated FROM careers TO /, this fires.
+            setActiveTab(items[0].name)
+        }
+
+    }, [pathname, items])
 
     return (
         <div

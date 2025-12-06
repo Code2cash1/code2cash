@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import Spline from '@splinetool/react-spline';
 import { PhoneCall } from 'lucide-react';
 import { Button } from "@/components/ui/neon-button";
@@ -62,17 +63,13 @@ function HeroContent() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
-                <Button
-                    variant="default"
-                    size="lg"
-                    className="text-lg bg-[#31a39c]/10 hover:bg-[#31a39c]/20 border-[#31a39c]/50 text-[#31a39c] min-w-[200px]"
-                    onClick={() => window.location.href = '#contact'} // Or a proper contact form link
+                <Link
+                    href="/callback"
+                    className="inline-flex items-center justify-center gap-2 text-lg bg-[#31a39c]/10 hover:bg-[#31a39c]/20 border border-[#31a39c]/50 text-[#31a39c] min-w-[200px] px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 relative z-50 pointer-events-auto cursor-pointer"
                 >
-                    <div className="flex items-center gap-2">
-                        <PhoneCall className="w-5 h-5" />
-                        <span>Request Call Back</span>
-                    </div>
-                </Button>
+                    <PhoneCall className="w-5 h-5" />
+                    <span>Request Call Back</span>
+                </Link>
             </div>
 
         </div>
@@ -84,11 +81,11 @@ export function SplineCallToAction() {
         <div className="relative w-full overflow-hidden bg-[#030303] border-t border-white/10">
 
             <div className="relative min-h-[600px] flex flex-col justify-center items-center">
-                <div className="absolute inset-0 z-0 pointer-events-auto opacity-70">
+                <div className="absolute inset-0 z-0 pointer-events-none opacity-70">
                     <HeroSplineBackground />
                 </div>
 
-                <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
                     <HeroContent />
                 </div>
             </div>

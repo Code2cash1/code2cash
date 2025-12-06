@@ -61,8 +61,7 @@ export default function GalleryHoverCarousel({
             summary:
                 "Master React, Next.js, and modern UI libraries to build stunning web applications.",
             url: "#",
-            image:
-                "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
+            image: "/images/programs/frontend.png",
         },
         {
             id: "item-2",
@@ -70,8 +69,7 @@ export default function GalleryHoverCarousel({
             summary:
                 "Build scalable APIs and server-side architectures using Node.js, Python, and MongoDB.",
             url: "#",
-            image:
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop",
+            image: "/images/programs/backend.png",
         },
         {
             id: "item-3",
@@ -79,8 +77,7 @@ export default function GalleryHoverCarousel({
             summary:
                 "Become a complete developer by mastering the MERN stack: MongoDB, Express, React, and Node.js.",
             url: "#",
-            image:
-                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2669&auto=format&fit=crop",
+            image: "/images/programs/fullstack.png",
         },
         {
             id: "item-4",
@@ -88,8 +85,7 @@ export default function GalleryHoverCarousel({
             summary:
                 "Craft responsive, pixel-perfect layouts and animations with modern HTML5 and Tailwind CSS.",
             url: "#",
-            image:
-                "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2670&auto=format&fit=crop",
+            image: "/images/programs/htmlcss.png",
         },
         {
             id: "item-5",
@@ -97,8 +93,7 @@ export default function GalleryHoverCarousel({
             summary:
                 "Leverage Python for backend scripting, automation, and building powerful web services.",
             url: "#",
-            image:
-                "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2670&auto=format&fit=crop",
+            image: "/images/programs/python.png",
         }
     ],
 }: {
@@ -110,7 +105,7 @@ export default function GalleryHoverCarousel({
     return (
         <section className="py-24 bg-[#030303] relative overflow-hidden">
             {/* Decorative Background Elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#31a39c]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#31a39c]/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <CarouselProvider>
@@ -132,7 +127,7 @@ export default function GalleryHoverCarousel({
                         <CarouselContent className="hide-scrollbar w-full max-w-full md:ml-4 md:-mr-4 gap-6">
                             {items.map((item) => (
                                 <CarouselItem key={item.id} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3 max-w-[400px]">
-                                    <Link href={item.url} className="group block relative w-full h-[400px]">
+                                    <Link href={`/careers/${item.id}`} className="group block relative w-full h-[400px]">
                                         <Card className="overflow-hidden h-full w-full rounded-3xl border border-white/10 bg-[#0a0a0a] group-hover:border-[#31a39c]/50 transition-colors duration-500">
                                             {/* Image */}
                                             <div className="relative h-full w-full transition-all duration-700 group-hover:h-3/5">
@@ -154,23 +149,21 @@ export default function GalleryHoverCarousel({
                                             </div>
 
                                             {/* Hover Text Section */}
-                                            <div className="absolute bottom-0 left-0 w-full p-6 h-2/5 flex flex-col justify-start pt-4 bg-[#0a0a0a] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                                                <h3 className="text-2xl font-bold text-[#31a39c] mb-3">{item.title}</h3>
-                                                <p className="text-white/60 text-sm leading-relaxed mb-4">
+                                            <div className="absolute bottom-0 left-0 w-full p-5 h-1/2 flex flex-col justify-start pt-2 bg-[#0a0a0a] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                                <h3 className="text-xl font-bold text-[#31a39c] mb-2">{item.title}</h3>
+                                                <p className="text-white/60 text-xs leading-relaxed mb-3 line-clamp-3">
                                                     {item.summary}
                                                 </p>
-                                                <div className="mt-auto flex items-center text-white font-medium text-sm group/link">
-                                                    Apply Now
-                                                    <ArrowRight className="ml-2 w-4 h-4 text-[#31a39c] group-hover/link:translate-x-1 transition-transform" />
-                                                </div>
 
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    className="absolute bottom-6 right-6 border-[#31a39c]/50 text-[#31a39c] hover:bg-[#31a39c] hover:text-white rounded-full transition-all duration-300"
-                                                >
-                                                    <ArrowRight className="size-5" />
-                                                </Button>
+                                                <div className="mt-auto w-full">
+                                                    <Button
+                                                        size="sm"
+                                                        className="w-full h-9 bg-[#31a39c] text-white hover:bg-[#288a84] transition-colors rounded-full font-medium text-xs"
+                                                    >
+                                                        View Program
+                                                        <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
+                                                    </Button>
+                                                </div>
                                             </div>
                                         </Card>
                                     </Link>
