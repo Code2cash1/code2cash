@@ -45,34 +45,56 @@ export function NavBar({ items, className }: NavBarProps) {
     }, [])
 
     useEffect(() => {
-        // Find exact match first (handles /, /#about as distinct if pathname matched, but pathname ignores hash)
-        // Since pathname ignores hash, / matches / and /#about's base. 
-        // We rely on path segments.
+        // Handle active tab based on path and hash
+        const handleActiveTab = () => {
+            const isHomePage = pathname === '/';
+            // Safe check for window
+            const hash = typeof window !== 'undefined' ? window.location.hash : '';
 
-        // Strategy:
-        // 1. If we are on a known page route (like /careers), set that.
-        // 2. If we are on root /, defaulting to Home is fine, but if user clicks About, local state handles it.
-        // This effect runs on pathname change.
+            if (isHomePage) {
+                // Check if there is a hash that matches a nav item
+                if (hash) {
+                    const matchingItem = items.find(item => item.url === `/${hash}`);
+                    if (matchingItem) {
+                        setActiveTab(matchingItem.name);
 
-        const isHomePage = pathname === '/';
+                        // Force scroll to element as fallback for cross-page navigation
+                        setTimeout(() => {
+                            const id = hash.replace('#', '');
+                            const element = document.getElementById(id);
+                            if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 500);
+                        return;
+                    }
+                }
+                // If no hash or no match, default to first item (Home)
+                // But only if we are strictly on home without a known hash sub-section
+                const homeItem = items.find(item => item.url === '/');
+                if (homeItem) {
+                    setActiveTab(homeItem.name);
+                } else {
+                    setActiveTab(items[0].name);
+                }
+            } else {
+                // Sub-pages logic (e.g. /careers)
+                // Check for exact match or prefix match for sub-pages
+                const matchingItem = items.find(item =>
+                    item.url !== '/' && (item.url === pathname || pathname.startsWith(item.url))
+                );
 
-        if (!isHomePage) {
-            // Check for exact match or prefix match for sub-pages
-            const matchingItem = items.find(item =>
-                item.url !== '/' && (item.url === pathname || pathname.startsWith(item.url))
-            );
-
-            if (matchingItem) {
-                setActiveTab(matchingItem.name);
+                if (matchingItem) {
+                    setActiveTab(matchingItem.name);
+                }
             }
-        } else {
-            // On home page, we generally want "Home" active unless we are handling scroll-spy which is complex here.
-            // We will stick to defaulting to Home if we just navigated here.
-            // But if we are just scrolling, this effect won't fire, so local state persists.
-            // If we navigated FROM careers TO /, this fires.
-            setActiveTab(items[0].name)
-        }
+        };
 
+        handleActiveTab();
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleActiveTab);
+        return () => window.removeEventListener('hashchange', handleActiveTab);
     }, [pathname, items])
 
     return (
@@ -98,7 +120,14 @@ export function NavBar({ items, className }: NavBarProps) {
                                 <Link
                                     key={item.name}
                                     href={item.url}
-                                    onClick={() => setActiveTab(item.name)}
+                                    onClick={(e) => {
+                                        setActiveTab(item.name);
+                                        // Force robust navigation for cross-page hash links
+                                        if (pathname !== '/' && item.url.startsWith('/#')) {
+                                            // This ensures the browser handles the jump reliably
+                                            window.location.href = item.url;
+                                        }
+                                    }}
                                     className={cn(
                                         "relative cursor-pointer text-xs md:text-sm font-semibold px-3 md:px-6 py-2 rounded-full transition-colors overflow-visible",
                                         "text-foreground/80 hover:text-primary",

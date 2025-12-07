@@ -1,12 +1,25 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Spline from '@splinetool/react-spline';
 import { PhoneCall } from 'lucide-react';
 import { Button } from "@/components/ui/neon-button";
 
 function HeroSplineBackground() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <div style={{
             position: 'relative',
@@ -16,15 +29,26 @@ function HeroSplineBackground() {
             pointerEvents: 'auto',
             overflow: 'hidden',
         }}>
-            <Spline
-                style={{
+            {isMobile ? (
+                // Lightweight gradient fallback for mobile
+                <div style={{
                     width: '100%',
                     height: '100%',
                     minHeight: '600px',
-                    pointerEvents: 'auto',
-                }}
-                scene="https://prod.spline.design/dJqTIQ-tE3ULUPMi/scene.splinecode"
-            />
+                    background: 'radial-gradient(circle at 50% 50%, rgba(49, 163, 156, 0.15) 0%, transparent 70%)',
+                }} />
+            ) : (
+                // Full 3D scene for desktop
+                <Spline
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        minHeight: '600px',
+                        pointerEvents: 'auto',
+                    }}
+                    scene="https://prod.spline.design/dJqTIQ-tE3ULUPMi/scene.splinecode"
+                />
+            )}
             <div
                 style={{
                     position: 'absolute',

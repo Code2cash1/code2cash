@@ -1,6 +1,8 @@
 "use client";
 
 import { FileText, Award, Medal, Shirt, Presentation, Briefcase } from "lucide-react";
+import { StardustButton } from "@/components/ui/stardust-button";
+import { useRouter } from "next/navigation";
 
 const perks = [
     {
@@ -36,6 +38,13 @@ const perks = [
 ];
 
 export default function InternshipPerks() {
+    const router = useRouter();
+
+    const handleVerifyCertificate = () => {
+        // Navigate to certificate verification page
+        router.push('/careers/verify-certificate');
+    };
+
     return (
         <section className="py-20 relative px-4">
             <div className="container mx-auto max-w-6xl">
@@ -70,6 +79,16 @@ export default function InternshipPerks() {
                             <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#31a39c]/0 via-[#31a39c]/5 to-[#31a39c]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     ))}
+                </div>
+
+                {/* Verify Certificate Button */}
+                <div className="flex justify-center mt-16">
+                    <StardustButton
+                        onClick={handleVerifyCertificate}
+                        className="transform hover:scale-105 transition-transform"
+                    >
+                        Verify Your Certificates Now
+                    </StardustButton>
                 </div>
             </div>
         </section>
