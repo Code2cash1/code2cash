@@ -38,7 +38,7 @@ const allowedDomains = [
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   
-  // Always set CORS headers
+  // Set CORS headers for allowed origins
   if (origin && allowedDomains.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
@@ -55,13 +55,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Use cors package for additional CORS handling
-app.use(cors({
-  origin: allowedDomains,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
-}));
+// Remove the cors() package middleware since we're handling it manually
 app.use(express.json());
 
 // Connect to Database and Seed Admin
