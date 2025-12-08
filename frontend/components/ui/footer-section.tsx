@@ -31,7 +31,7 @@ const footerLinks: FooterSection[] = [
         links: [
             { title: 'About Us', href: '#about' },
             { title: 'Careers', href: '/careers' },
-            { title: 'Privacy Policy', href: '#' },
+            { title: 'Privacy Policy', href: '/privacy-policy' },
             { title: 'Terms of Services', href: '/terms-of-service' },
         ],
     },
@@ -94,15 +94,10 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <AnimatedContainer delay={0.4} className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <AnimatedContainer delay={0.4} className="border-t border-white/10 pt-8 flex items-center justify-center">
                     <p className="text-white/40 text-xs">
                         © {new Date().getFullYear()} Code2Cash. All rights reserved.
                     </p>
-                    <div className="flex items-center gap-6">
-                        <a href="#" className="text-white/40 hover:text-[#31a39c] text-xs transition-colors">Privacy</a>
-                        <a href="/terms-of-service" className="text-white/40 hover:text-[#31a39c] text-xs transition-colors">Terms</a>
-                        <a href="#" className="text-white/40 hover:text-[#31a39c] text-xs transition-colors">Sitemap</a>
-                    </div>
                 </AnimatedContainer>
             </div>
         </footer>

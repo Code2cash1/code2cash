@@ -271,9 +271,9 @@ export default function JobApplyPage() {
       <Code2CashNavbar />
       <div className="min-h-screen bg-[#030303] text-white pt-24 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-          <Link href={`/jobs/${jobId}`} className="inline-flex items-center text-white/60 hover:text-[#31a39c] mb-4 transition-colors">
+          <Link href="/careers" className="inline-flex items-center text-white/60 hover:text-[#31a39c] mb-4 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Job Details
+            Back to Careers
           </Link>
         </div>
 
@@ -682,7 +682,7 @@ export default function JobApplyPage() {
 
                     {/* Submit Button */}
                     <div className="flex justify-end space-x-4">
-                      <Link href={`/jobs/${jobId}`}>
+                      <Link href="/careers">
                         <Button variant="outline" type="button" className="border-white/10 text-white hover:bg-white/5 hover:text-white">
                           Cancel
                         </Button>

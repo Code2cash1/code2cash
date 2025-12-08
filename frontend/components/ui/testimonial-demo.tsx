@@ -4,28 +4,33 @@ import { useState } from "react";
 const testimonials = [
   {
     id: 1,
-    testimonial: "Code2Cash transformed our entire digital presence. Their expertise in modern web development is unmatched.",
-    author: "Sarah Chen - CTO @ TechVentures"
+    testimonial: "Code2Cash delivered our company website ahead of schedule with exceptional UI/UX design. The team was responsive throughout the project, and the final product exceeded our expectations.",
+    author: "Rajesh Kumar — Senior Software Engineer @ HCL"
   },
   {
     id: 2,
-    testimonial: "The team at Code2Cash delivered beyond our expectations. They understand both technology and business needs perfectly.",
-    author: "Syed Asghar Ali - Senior Software Engineer @ HCL Tech"
+    testimonial: "Working with Code2Cash was a smooth experience from start to finish. Their attention to detail in web development and modern design approach helped us launch our platform successfully.",
+    author: "Priya Sharma — Senior Web Developer @ TCS"
   },
   {
     id: 3,
-    testimonial: "Working with Code2Cash was a game-changer for our e-commerce platform. Performance increased by 300%.",
-    author: "Emily Watson - Head of Product @ RetailMax"
+    testimonial: "Code2Cash transformed our outdated website into a modern, user-friendly platform. The development process was efficient, and they were always available for feedback. Impressed by their technical expertise.",
+    author: "Arjun Patel — Full Stack Developer @ Infosys"
   },
   {
     id: 4,
-    testimonial: "Code2Cash's full-stack solutions helped us scale from 100 to 100,000 users without any downtime.",
-    author: "David Kim - VP Engineering @ ScaleApp"
+    testimonial: "The UI/UX quality delivered by Code2Cash was outstanding. They understood our requirements perfectly and created a responsive, visually appealing website. The turnaround time was impressive.",
+    author: "Neha Reddy — Frontend Developer @ Wipro"
   },
   {
     id: 5,
-    testimonial: "Their attention to detail and clean code practices make Code2Cash our go-to development partner.",
-    author: "Lisa Anderson - Director of Innovation @ FutureCorp"
+    testimonial: "Code2Cash built our web application with clean code and excellent performance. Their team was professional, met all deadlines, and provided great support post-launch. A reliable partner for development.",
+    author: "Vikram Singh — Backend Engineer @ Tech Mahindra"
+  },
+  {
+    id: 6,
+    testimonial: "Code2Cash created a beautiful, functional website for our team. The design was modern and intuitive, and they delivered faster than expected. Their collaborative approach made the process stress-free.",
+    author: "Ananya Iyer — Software Engineer @ Cognizant"
   }
 ];
 
@@ -45,7 +50,7 @@ function ShuffleCards() {
     <div className="grid place-content-center overflow-hidden bg-[#030303] px-8 py-24 text-slate-50 min-h-screen h-full w-full">
       <div className="text-center mb-16">
         <h2 className="text-5xl font-bold text-white mb-4">
-          What The Experts Say About Code2Cash
+          What Clients Say About Code2Cash
         </h2>
         <div className="text-4xl text-teal-400 font-bold">
           {testimonials[0].author?.charAt(0) || 'A'}
