@@ -23,21 +23,26 @@ const jobApplicationRoutes = require('./routes/jobApplicationRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allowed Origins
+// Allowed Origins - Production only
 const allowedOrigins = [
-  'http://localhost:3000',
   'https://code2cash.in',
-  'https://www.code2cash.in',
-  'https://code2cash.vercel.app',
-  'https://code2cashbackend.vercel.app'
+  'https://www.code2cash.in'
 ];
 
-// CORS Middleware
-// Use origin: true to reflect the request origin (allows credentials for any domain)
-// This is safe because we can control access via authentication/tokens if needed, 
-// and solves the multiple domain issue reliably.
+// CORS Middleware - Strict production-only origins
 app.use(cors({
-  origin: true,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, Postman, curl)
+    if (!origin) return callback(null, true);
+
+    // Check if origin is in allowed list
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      console.error('❌ CORS blocked origin:', origin);
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
@@ -49,9 +54,30 @@ app.options(/.*/, cors());
 
 app.use(express.json());
 
-// Connect to Database and Seed
-// Vercel cold start opt: connect inside request or cache.
-// Logic: connectDB() checks cache. 
+// Database Connection Middleware
+// Fix for 500 Errors on Vercel Cold Starts:
+// Since bufferCommands is false, we MUST ensure DB is connected before handling the request.
+app.use(async (req, res, next) => {
+  try {
+    // Only wait if not already connected
+    if (require('mongoose').connection.readyState !== 1) {
+      console.log('⏳ Waiting for DB connection...');
+      await connectDB();
+      console.log('✅ DB Connected');
+    }
+    next();
+  } catch (err) {
+    console.error("❌ DB Connection Error:", err);
+    res.status(500).json({
+      success: false,
+      message: 'Database connection failed',
+      error: process.env.NODE_ENV === 'development' ? err.message : 'Service Unavailable'
+    });
+  }
+});
+
+// Seed Logic (Still runs in background, but doesn't block request if strictly not needed, 
+// though logically we might want it. leaving as is for now as it's promise-based)
 connectDB().then(() => {
   // Seeding might not be ideal on every cold start in production, 
   // but keeping business logic as is for now.
@@ -74,6 +100,24 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/reissue', reissueRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/job-applications', jobApplicationRoutes);
+
+// Health Check Route
+app.get('/api/health', (req, res) => {
+  const mongoose = require('mongoose');
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    env: {
+      NODE_ENV: process.env.NODE_ENV,
+      MONGODB_URI: process.env.MONGODB_URI ? '✅ Set' : '❌ Missing',
+      CLOUDINARY: process.env.CLOUDINARY_CLOUD_NAME ? '✅ Set' : '❌ Missing'
+    },
+    database: {
+      status: mongoose.connection.readyState === 1 ? '✅ Connected' : '❌ Disconnected',
+      readyState: mongoose.connection.readyState
+    }
+  });
+});
 
 // Root Route
 app.get('/', (req, res) => {

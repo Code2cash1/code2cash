@@ -102,8 +102,8 @@ export default function AdminInternshipsPage() {
     const fetchPrograms = async () => {
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/programs`);
-            const data = await res.json();
-            setPrograms(data);
+            const response = await res.json();
+            setPrograms(response.data || []);
         } catch (error) {
             console.error("Failed to fetch programs", error);
         }

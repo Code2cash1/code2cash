@@ -35,12 +35,13 @@ export default function ProgramDetailsPage() {
                 // Try fetching by ID first
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/programs/${programId}`);
                 if (res.ok) {
-                    const data = await res.json();
-                    setProgram(data);
+                    const response = await res.json();
+                    setProgram(response.data || response);
                 } else {
                     // Fallback: If passed title slug or failed by ID, try finding in all (simplified)
                     const allRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/programs`);
-                    const allData = await allRes.json();
+                    const allResponse = await allRes.json();
+                    const allData = allResponse.data || allResponse;
                     // Basic fuzzy match attempt if needed, but primarily relying on ID now
                     const found = allData.find((p: Program) => p._id === programId || p.title.toLowerCase().replace(/\s+/g, '-') === programId);
                     if (found) setProgram(found);

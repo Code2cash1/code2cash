@@ -40,9 +40,16 @@ exports.createProgram = async (req, res) => {
 exports.getAllPrograms = async (req, res) => {
     try {
         const programs = await Program.find().sort({ createdAt: -1 });
-        res.status(200).json(programs);
+        res.status(200).json({
+            success: true,
+            data: programs
+        });
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Error fetching programs', error: error.message });
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching programs',
+            error: error.message
+        });
     }
 };
 

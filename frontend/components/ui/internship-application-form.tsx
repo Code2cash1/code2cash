@@ -50,7 +50,8 @@ export default function InternshipApplicationForm() {
         const fetchPrograms = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/programs`);
-                const data = await res.json();
+                const response = await res.json();
+                const data = response.data || response;
                 setPrograms(data);
 
                 // If we have a pre-selected program, try to find its price

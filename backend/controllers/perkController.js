@@ -13,9 +13,16 @@ exports.createPerk = async (req, res) => {
 exports.getAllPerks = async (req, res) => {
     try {
         const perks = await Perk.find().sort({ order: 1, createdAt: 1 });
-        res.status(200).json(perks);
+        res.status(200).json({
+            success: true,
+            data: perks
+        });
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Error fetching perks', error: error.message });
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching perks',
+            error: error.message
+        });
     }
 };
 
