@@ -34,8 +34,8 @@ export function SplineSceneBasic() {
           </h1>
           <p className="mt-4 text-white/60 leading-relaxed text-center md:text-left text-sm md:text-base">
             Code2Cash is a premier web solutions provider based in India, specializing in transforming digital visions into reality.
-            Founded with a mission to empower businesses through technology, we've successfully delivered over 1000+ projects
-            for clients worldwide. Our team of 50+ expert developers, designers, and digital strategists work tirelessly to create
+            Founded with a mission to empower businesses through technology, we've successfully delivered over 100+ projects
+            for clients worldwide. Our team of 10+ expert developers, designers, and digital strategists work tirelessly to create
             innovative solutions that drive measurable results and business growth.
           </p>
           <div className="mt-6 space-y-3 flex flex-col items-center md:items-start">
