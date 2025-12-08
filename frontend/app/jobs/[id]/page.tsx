@@ -144,9 +144,9 @@ export default function JobDetailPage() {
                       </div>
                     </div>
                     <div className="text-left md:text-right flex flex-col items-end">
-                      <Link href="/jobs" className="inline-flex items-center text-white/60 hover:text-[#31a39c] mb-2 transition-colors text-sm">
+                      <Link href="/careers" className="inline-flex items-center text-white/60 hover:text-[#31a39c] mb-2 transition-colors text-sm">
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Jobs
+                        Back to Careers
                       </Link>
                       <div className="text-2xl font-bold text-[#31a39c] mb-1">{job.salary}</div>
                       <div className="text-sm text-white/40">{job.applicationCount} applications</div>
