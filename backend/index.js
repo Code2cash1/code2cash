@@ -25,37 +25,52 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// Allowed origins
 const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
-  process.env.FRONTEND_URL,
-  /^https:\/\/.*\.vercel\.app$/,
-  /^https:\/\/.*\.vercel\.app$/
+  'https://www.code2cash.in',
+  'https://code2cash.vercel.app',
+  /^https:\/\/code2cash(-\w+)?\.vercel\.app$/,
+  /^https:\/\/code2cash(-\w+)?-code2cashs-projects\-[a-z0-9]+\.vercel\.app$/,
+  process.env.FRONTEND_URL
 ].filter(Boolean);
 
-app.use(cors({
+// CORS configuration
+const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
     // Check if origin is in allowedOrigins array
-    if (allowedOrigins.some(allowed => {
+    const isAllowed = allowedOrigins.some(allowed => {
       if (typeof allowed === 'string') {
         return allowed === origin;
       } else if (allowed instanceof RegExp) {
         return allowed.test(origin);
       }
       return false;
-    })) {
+    });
+    
+    if (isAllowed || !origin) {
       callback(null, true);
     } else {
+      console.log('CORS blocked for origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400 // 24 hours
+};
+
+// Apply CORS with options
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Connect to Database and Seed Admin
