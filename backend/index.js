@@ -38,8 +38,13 @@ const allowedDomains = [
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   
+  // Log the origin for debugging
+  console.log('CORS Middleware - Origin:', origin);
+  console.log('CORS Middleware - Allowed Domains:', allowedDomains);
+  
   // Set CORS headers for allowed origins
   if (origin && allowedDomains.includes(origin)) {
+    console.log('CORS Middleware - Setting Access-Control-Allow-Origin:', origin);
     res.header('Access-Control-Allow-Origin', origin);
   }
   
@@ -49,6 +54,7 @@ app.use((req, res, next) => {
   
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
+    console.log('CORS Middleware - Handling OPTIONS request');
     return res.status(200).end();
   }
   
