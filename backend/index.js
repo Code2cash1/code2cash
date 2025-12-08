@@ -29,6 +29,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'https://code2cash.in',
   'https://www.code2cash.in',
   'https://code2cash.vercel.app',
   /^https:\/\/code2cash(-\w+)?\.vercel\.app$/,
@@ -52,7 +53,7 @@ const corsOptions = {
       return false;
     });
     
-    if (isAllowed || !origin) {
+    if (isAllowed) {
       callback(null, true);
     } else {
       console.log('CORS blocked for origin:', origin);

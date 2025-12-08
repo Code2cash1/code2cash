@@ -1,0 +1,11 @@
+node_modules/
+.next/
+*.log
+*.md
+.git
+.gitignore
+.vercel
+.env.local
+.env.development
+.env.test
+.env.production
