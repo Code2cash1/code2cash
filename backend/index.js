@@ -24,44 +24,26 @@ const jobApplicationRoutes = require('./routes/jobApplicationRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-// Allowed domains
-const allowedDomains = [
-  'http://localhost:3000',
-  'http://127.0.0.1:3000',
-  'https://code2cash.in',
-  'https://www.code2cash.in',
-  'https://code2cash.vercel.app'
-];
+// CORS Configuration - Simple and direct
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://code2cash.in',
+    'https://www.code2cash.in',
+    'https://code2cash.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  optionsSuccessStatus: 200
+};
 
-// CORS Middleware
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  
-  // Log the origin for debugging
-  console.log('CORS Middleware - Origin:', origin);
-  console.log('CORS Middleware - Allowed Domains:', allowedDomains);
-  
-  // Set CORS headers for allowed origins
-  if (origin && allowedDomains.includes(origin)) {
-    console.log('CORS Middleware - Setting Access-Control-Allow-Origin:', origin);
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    console.log('CORS Middleware - Handling OPTIONS request');
-    return res.status(200).end();
-  }
-  
-  next();
-});
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
-// Remove the cors() package middleware since we're handling it manually
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Connect to Database and Seed Admin
