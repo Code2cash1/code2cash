@@ -1,0 +1,23 @@
+curl -s ^
+  -F "jobId=6935f125c4c77a2b961a5d3a" ^
+  -F "firstName=Test" ^
+  -F "lastName=User" ^
+  -F "email=test@example.com" ^
+  -F "phone=1234567890" ^
+  -F "address[street]=123 St" ^
+  -F "address[city]=City" ^
+  -F "address[state]=State" ^
+  -F "address[pincode]=123456" ^
+  -F "address[country]=India" ^
+  -F "experience=2 years" ^
+  -F "highestQualification=BTech" ^
+  -F "yearOfPassing=2023" ^
+  -F "university=Test Uni" ^
+  -F "percentage=80" ^
+  -F "technicalSkills=[\"React\",\"Node\"]" ^
+  -F "whyShouldWeHireYou=Because" ^
+  -F "howCanYouContribute=Code" ^
+  -F "expectedSalary=10LPA" ^
+  -F "noticePeriod=Immediate" ^
+  -F "resume=@dummy.pdf" ^
+  http://localhost:5000/api/job-applications > response.json
