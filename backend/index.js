@@ -36,12 +36,15 @@ const allowedOrigins = [
 // CORS Middleware
 app.use(cors({
   origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
+
+    // Check if origin is allowed
     if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
       return callback(null, true);
     } else {
       console.log('CORS blocked origin:', origin);
-      return callback(null, false);
+      return callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
@@ -49,7 +52,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 }));
 
-// Handle preflight requests explicitly
+// Handle preflight requests explicitly for all routes
 app.options('*', cors());
 
 app.use(express.json());

@@ -153,7 +153,6 @@ const applyForJob = async (req, res) => {
         });
     } catch (error) {
         console.error('Error submitting application:', error);
-        require('fs').writeFileSync('debug_error.log', `Controller Error: ${JSON.stringify(error, Object.getOwnPropertyNames(error))}\nStack: ${error.stack}\n${new Date().toISOString()}`);
         res.status(500).json({
             success: false,
             message: 'Error submitting application',
