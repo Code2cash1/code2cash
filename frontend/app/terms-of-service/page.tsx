@@ -72,7 +72,7 @@ export default function TermsOfServicePage() {
                                 </span>
                             </h1>
                             <p className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto">
-                                Last Updated: December 8, 2024
+                                Last Updated: December 8, 2025
                             </p>
                         </motion.div>
 
