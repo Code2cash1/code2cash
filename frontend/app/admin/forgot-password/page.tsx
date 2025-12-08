@@ -48,7 +48,7 @@ export default function AdminForgotPasswordPage() {
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder="admin@code2cash.com"
+                                    placeholder="admin@code2cash.in"
                                     className="pl-9 bg-[#030303] border-white/10 text-white placeholder:text-white/20 focus-visible:ring-[#31a39c]/50 focus-visible:border-[#31a39c]/50"
                                     required
                                 />

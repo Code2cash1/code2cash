@@ -64,7 +64,7 @@ export function AdminSidebar({ isOpen }: SidebarProps) {
                         </Avatar>
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-white truncate">Admin User</p>
-                            <p className="text-xs text-white/40 truncate">admin@code2cash.com</p>
+                            <p className="text-xs text-white/40 truncate">admin@code2cash.in</p>
                         </div>
                     </div>
                     <Button

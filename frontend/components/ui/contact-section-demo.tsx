@@ -12,7 +12,7 @@ export function ContactSectionDemo() {
         <ContactSection
             title="We can turn your dream project into reality"
             mainMessage="Let's build something great! "
-            contactEmail="hello@code2cash.com"
+            contactEmail="hello@code2cash.in"
             onSubmit={handleSubmit}
         />
     );

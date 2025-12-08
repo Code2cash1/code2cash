@@ -439,8 +439,8 @@ export default function TermsOfServicePage() {
                                             If you have any questions about these Terms of Service, please contact us:
                                         </p>
                                         <div className="space-y-2">
-                                            <p><strong className="text-white">Email:</strong> support@code2cash.com</p>
-                                            <p><strong className="text-white">Website:</strong> www.code2cash.com</p>
+                                            <p><strong className="text-white">Email:</strong> support@code2cash.in</p>
+                                            <p><strong className="text-white">Website:</strong> www.code2cash.in</p>
                                             <p><strong className="text-white">UDYAM Registration:</strong> UDYAM-BR-26-0203793</p>
                                         </div>
                                     </div>

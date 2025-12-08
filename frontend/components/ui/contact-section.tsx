@@ -19,7 +19,7 @@ interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({
     title = "We can turn your dream project into reality",
     mainMessage = "Let's build something great! ",
-    contactEmail = "hello@code2cash.com",
+    contactEmail = "hello@code2cash.in",
     onSubmit,
 }) => {
     const [formData, setFormData] = React.useState({
