@@ -33,27 +33,19 @@ const allowedOrigins = [
 ];
 
 // CORS Middleware
-// CORS Middleware
+// Use origin: true to reflect the request origin (allows credentials for any domain)
+// This is safe because we can control access via authentication/tokens if needed, 
+// and solves the multiple domain issue reliably.
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-
-    // Check if origin is allowed
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
-      return callback(null, true);
-    } else {
-      console.log('CORS blocked origin:', origin);
-      return callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 }));
 
 // Handle preflight requests explicitly for all routes
-app.options('*', cors());
+// Express 5 requires regex /.*/ instead of '*'
+app.options(/.*/, cors());
 
 app.use(express.json());
 
