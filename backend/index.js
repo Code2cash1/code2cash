@@ -27,6 +27,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 // Allowed domains
 const allowedDomains = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
   'https://code2cash.in',
   'https://www.code2cash.in',
   'https://code2cash.vercel.app'
@@ -54,6 +56,14 @@ app.use((req, res, next) => {
   
   next();
 });
+
+// Use cors package for additional CORS handling
+app.use(cors({
+  origin: allowedDomains,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+}));
 app.use(express.json());
 
 // Connect to Database and Seed Admin
