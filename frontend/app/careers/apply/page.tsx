@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from 'react';
 import { Code2CashNavbar } from '@/components/ui/code2cash-navbar';
 import { Footer } from '@/components/ui/footer-section';
 import InternshipApplicationForm from '@/components/ui/internship-application-form';
@@ -14,7 +15,9 @@ export default function ApplyPage() {
                 <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#31a39c]/5 rounded-full blur-[80px] translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                 <div className="relative z-10 w-full">
-                    <InternshipApplicationForm />
+                    <Suspense fallback={<div className="text-center text-white/60 py-8">Loading application form...</div>}>
+                        <InternshipApplicationForm />
+                    </Suspense>
                 </div>
             </div>
             <Footer />
