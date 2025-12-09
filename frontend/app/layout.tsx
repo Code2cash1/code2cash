@@ -3,20 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import StructuredData from "@/components/seo/structured-data";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Code2Cash - Where Technology Meets Excellence",
+  title: "Code2Cash - Web Solutions Provider",
   description: "Transform your digital vision into reality with our comprehensive web solutions. We provide web development, UI/UX design, mobile apps, and e-commerce solutions.",
   keywords: ["web development", "UI/UX design", "mobile apps", "e-commerce", "digital solutions"],
-  icons: {
-    icon: [
-      { url: '/logo-final.png', sizes: 'any' },
-      { url: '/logo-nobg.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/logo-final.png',
-  },
 };
 
 export default function RootLayout({
@@ -26,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className={inter.className}>
         <SmoothScroll>
           {children}
