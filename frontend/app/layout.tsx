@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.code2cash.in'),
   title: {
-    default: "Code2Cash - Web Development Agency in India | Custom Websites & Apps",
+    default: "Code2Cash - where technology meets excellence",
     template: "%s | Code2Cash"
   },
   description: "Code2Cash is a leading MSME-registered web development agency in India offering custom website design, mobile app development, and digital solutions. Get a free quote today!",
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/logo-final.png',
-    apple: '/logo-final.png',
+    icon: '/c2c.png',
+    apple: '/c2c.png',
   },
   openGraph: {
     type: 'website',
