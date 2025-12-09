@@ -1,48 +1,51 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://www.code2cash.in'
+  const currentDate = new Date()
+
   return [
     {
-      url: "https://code2cash.in",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: "https://code2cash.in/careers",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: "https://code2cash.in/careers/verify-certificate",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: "https://code2cash.in/jobs",
-      lastModified: new Date(),
-      changeFrequency: "daily",
+      url: `${baseUrl}/services`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: "https://code2cash.in/privacy-policy",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: "https://code2cash.in/terms-of-service",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: "https://code2cash.in/callback",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      url: `${baseUrl}/careers`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms-of-service`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ]
 }
