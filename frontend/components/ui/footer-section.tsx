@@ -31,6 +31,7 @@ const footerLinks: FooterSection[] = [
         links: [
             { title: 'About Us', href: '#about' },
             { title: 'Careers', href: '/careers' },
+            { title: 'AICTE Guidelines', href: '/aicte-guidelines' },
             { title: 'Privacy Policy', href: '/privacy-policy' },
             { title: 'Terms of Services', href: '/terms-of-service' },
         ],
